@@ -4,7 +4,6 @@ filetype off
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'VundleVim/Vundle.vim'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
@@ -20,6 +19,12 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'sirver/UltiSnips'
 Plug 'lambdalisue/vim-gita'
+
+if has("nvim")
+	Plug 'benekastah/neomake'
+else
+	Plug 'scrooloose/syntastic'
+endif
 
 call plug#end()
 
@@ -75,11 +80,17 @@ if has("autocmd")
 	augroup END
 endif
 
-" Syntastic
+" Neomake
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pyflakes']
+if has("nvim")
+	autocmd BufWritePost * Neomake
+	let g:neomake_python = ['pyflakes']
+	let g:neomake_open_list = 2
+else
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_python_checkers = ['pyflakes']
+endif
 
 " vim-airline
 
@@ -116,6 +127,12 @@ nmap <leader>l :ls<cr>
 nmap <leader>hi :HeaderIncrease<cr>
 nmap <leader>hd :HeaderDecrease<cr>
 nmap <leader>u :UltiSnipsEdit<cr>
+nmap <leader>pi :PlugInstall<cr>
+nmap <leader>pu :PlugUpdate<cr>
+nmap <leader>pc :PlugClean
+nmap <leader>ps :PlugStatus
+nmap <leader>gs :Gita status<cr>
+nmap <leader>gb :Gita blame<cr>
 
 if has('nvim')
 	tnoremap <a-j> <C-\><C-n><C-w>j
