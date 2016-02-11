@@ -17,6 +17,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'sirver/UltiSnips'
 Plug 'lambdalisue/vim-gita'
+Plug 'koron/nyancat-vim'
 
 if has("nvim")
 	Plug 'benekastah/neomake'
@@ -64,6 +65,7 @@ set t_Co=256
 set noerrorbells
 set novisualbell
 set vb t_vb=
+set title
 
 let mapleader=","
 
@@ -112,15 +114,11 @@ let g:UltiSnipsUsePythonVersion = 2
 
 " mappings
 
-map <C-a> :AT<cr>
-map <leader>q :tabclose<cr>
-map <leader>t :tabnew<cr>
-map <leader>c :noh<cr>
-map <leader>n :bn<cr>
-map <leader>p :bp<cr> 
-nmap <leader>m :make<cr>
+map <F5> :setlocal spell<cr>
+map <F6> :setlocal nospell<cr>
+
 vmap <C-c> "+y
-nmap <leader>l :ls<cr>
+
 nmap <leader>hi :HeaderIncrease<cr>
 nmap <leader>hd :HeaderDecrease<cr>
 nmap <leader>u :UltiSnipsEdit<cr>
@@ -130,6 +128,14 @@ nmap <leader>pc :PlugClean<cr>
 nmap <leader>ps :PlugStatus<cr>
 nmap <leader>gs :Gita status<cr>
 nmap <leader>gb :Gita blame<cr>
+nmap <leader>l :ls<cr>
+nmap <leader>q :tabclose<cr>
+nmap <leader>t :tabnew<cr>
+nmap <leader>c :noh<cr>
+nmap <leader>m :make<cr>
+
+command W :w
+command Q :q
 
 if has('nvim')
 	tnoremap <a-j> <C-\><C-n><C-w>j
