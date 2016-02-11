@@ -10,8 +10,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/a.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'Valloric/YouCompleteMe'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'StanAngeloff/php.vim'
 Plug 'bling/vim-airline'
 Plug 'endoffile78/ir_black'
 Plug 'tpope/vim-scriptease'
@@ -47,7 +45,6 @@ set showcmd
 set background=dark
 set hlsearch
 set ruler
-set ttyfast
 set splitright
 set splitbelow
 set matchtime=2
@@ -129,8 +126,8 @@ nmap <leader>hd :HeaderDecrease<cr>
 nmap <leader>u :UltiSnipsEdit<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
-nmap <leader>pc :PlugClean
-nmap <leader>ps :PlugStatus
+nmap <leader>pc :PlugClean<cr>
+nmap <leader>ps :PlugStatus<cr>
 nmap <leader>gs :Gita status<cr>
 nmap <leader>gb :Gita blame<cr>
 
