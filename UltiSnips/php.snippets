@@ -1,0 +1,41 @@
+snippet inc
+include '$1';$0
+endsnippet
+
+snippet inco
+include_once '$1';$0
+endsnippet
+
+snippet func
+function ${1:myFunc}($2){
+	${0://code}
+} 
+endsnippet
+
+snippet req
+require '$1';$0
+endsnippet
+
+snippet reqo
+require_once '$1';$0
+endsnippet
+
+snippet session
+$_SESSION[$1];$0
+endsnippet
+
+snippet post
+$_POST[$1];$0
+endsnippet
+
+snippet get
+$_GET[$1];$0
+endsnippet
+
+snippet class
+class ${1:Class} {
+	function ${2:__construct}($3){
+		${4://code}
+	}
+}
+endsnippet
