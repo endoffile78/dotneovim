@@ -1,0 +1,37 @@
+snippet main
+int main(int argc, char *argv[]){
+	$0
+	return 0;
+}
+endsnippet
+
+snippet inc
+#include <$1>$0
+endsnippet
+
+snippet linc
+#include "$1"$0
+endsnippet
+
+snippet def
+#define $1 $0
+endsnippet
+
+snippet tdef
+typedef $1 $2;$0
+endsnippet
+
+snippet struct
+struct $1 {
+	$2
+};$0
+endsnippet
+
+snippet class
+class ${1:MyClass} {
+	public:
+		$1(){
+			$0
+		}
+};
+endsnippet
