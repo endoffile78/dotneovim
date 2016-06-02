@@ -3,7 +3,6 @@
 filetype off
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
