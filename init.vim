@@ -135,6 +135,7 @@ nmap <leader>m :make<cr>
 
 command W :w
 command Q :q
+command Wq :wq
 
 if has('nvim')
 	tnoremap <a-j> <C-\><C-n><C-w>j
