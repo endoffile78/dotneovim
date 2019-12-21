@@ -3,102 +3,129 @@
 filetype off
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'tpope/vim-endwise'
-Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/a.vim'
-Plug 'Valloric/MatchTagAlways'
-Plug 'Valloric/YouCompleteMe'
-Plug 'bling/vim-airline'
-Plug 'endoffile78/ir_black'
-Plug 'tpope/vim-scriptease'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'sirver/UltiSnips'
-Plug 'lambdalisue/vim-gita'
-Plug 'koron/nyancat-vim'
+" general
 
-if has("nvim")
-	Plug 'benekastah/neomake'
-else
-	Plug 'scrooloose/syntastic'
-endif
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'jiangmiao/auto-pairs'
+Plug 'liuchengxu/vim-which-key'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'godlygeek/tabular'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'easymotion/vim-easymotion'
+
+" theme
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'haishanh/night-owl.vim'
+
+" programming
+
+Plug 'sheerun/vim-polyglot'
+Plug 'sirver/UltiSnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Shougo/echodoc.vim'
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'plasticboy/vim-markdown'
+
+" latex
+
+Plug 'lervag/vimtex'
+
+" org
+
+Plug 'jceb/vim-orgmode'
+
+" git
+
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
+
+" fun
+
+Plug 'koron/nyancat-vim'
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
+" general
+
+set mouse=a
+set noshowmode
+set background=dark
+set ruler
+set nocompatible
+set autoread
+set number
+set nowrap
+set cursorline
+set noerrorbells
+set novisualbell
+set title
+set splitright
+set splitbelow
+set backspace=indent,eol,start
+set lazyredraw
+set hidden
+set pastetoggle=<F10>
+set wildmode=list:full
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.png,*.jpg,*.gif,*.o,.git
+set timeoutlen=500
+set updatetime=300
+
+" encoding
+
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-set number
-set nowrap
+
+" indentation
+
 set autoindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set nosmartindent
-set mouse=a
-set showmatch
-set showcmd
-set background=dark
-set hlsearch
-set ruler
-set splitright
-set splitbelow
-set matchtime=2
-set backspace=indent,eol,start
-set lazyredraw
-set cursorline
-set laststatus=2
-set incsearch
-set hidden
-set binary
-set pastetoggle=<F10>
+set expandtab
 set smarttab
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.png,*.jpg,*.gif,*.o
-set t_Co=256
-set noerrorbells
-set novisualbell
-set vb t_vb=
-set title
+
+" searching
+
+set incsearch
+set ignorecase
+set hlsearch
+set showmatch
+
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
 
 let mapleader=","
 
-colo ir_black
+colo night-owl
 
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-	augroup filetype_detect_on_rename
-		autocmd!
-		autocmd BufFilePost * filetype detect
-	augroup END
-endif
-
-" Neomake
-
-if has("nvim")
-	autocmd BufWritePost * Neomake
-	let g:neomake_python = ['pyflakes']
-	let g:neomake_open_list = 2
-else
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_check_on_wq = 0
-	let g:syntastic_python_checkers = ['pyflakes']
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    augroup filetype_detect_on_rename
+        autocmd!
+        autocmd BufFilePost * filetype detect
+    augroup END
 endif
 
 " vim-airline
 
 let g:airline#extensions#tabline#enabled = 1
-
-" YouCompleteMe
-
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
+let g:airline_theme = "bubblegum"
 
 " UltiSnips
 
@@ -111,36 +138,73 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsUsePythonVersion = 2
 
+" whick-key
+
+nnoremap <silent> <leader> :WhichKey ','<CR>
+
+" coc.nvim
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <CR> :noh<CR><CR>
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" echodoc
+
+let g:echodoc_enable_at_startup = 1
+
+" vim-go
+
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+" better-whitespace
+
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+
+" vim-easymotion
+
+let g:EasyMotion_keys = "asdfghjkl"
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
 " mappings
 
-map <F5> :setlocal spell<cr>
-map <F6> :setlocal nospell<cr>
-
-vmap <C-c> "+y
-
-nmap <leader>hi :HeaderIncrease<cr>
-nmap <leader>hd :HeaderDecrease<cr>
-nmap <leader>u :UltiSnipsEdit<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
 nmap <leader>pc :PlugClean<cr>
-nmap <leader>ps :PlugStatus<cr>
-nmap <leader>gs :Gita status<cr>
-nmap <leader>gb :Gita blame<cr>
-nmap <leader>l :ls<cr>
-nmap <leader>q :tabclose<cr>
-nmap <leader>t :tabnew<cr>
-nmap <leader>c :noh<cr>
-nmap <leader>m :make<cr>
+
+nmap <leader>gs :Magit<cr>
+
+nmap <leader>bb :Buffers<cr>
+nmap <leader>bk :bdelete<cr>
+
+nmap <leader>ff :Files<cr>
+nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
+
+nmap <leader>wh <C-w>h
+nmap <leader>wj <C-w>j
+nmap <leader>wk <C-w>k
+nmap <leader>wl <C-w>l
 
 command W :w
 command Q :q
 command Wq :wq
-
-if has('nvim')
-	tnoremap <a-j> <C-\><C-n><C-w>j
-	tnoremap <a-k> <C-\><C-n><C-w>k
-	tnoremap <a-h> <C-\><C-n><C-w>h
-	tnoremap <a-l> <C-\><C-n><C-w>l
-	au WinEnter *pid:* call feedkeys('i')
-endif
