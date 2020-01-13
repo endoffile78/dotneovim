@@ -1,5 +1,3 @@
-" vim-plug
-
 filetype off
 call plug#begin('~/.config/nvim/bundle')
 
@@ -13,32 +11,33 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'markonm/traces.vim'
+Plug 'romainl/vim-cool'
+Plug 'tpope/vim-eunuch'
+Plug 'ryvnf/readline.vim'
+Plug 'liuchengxu/vim-clap'
+Plug 'dstein64/vim-win'
 
 " theme
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'haishanh/night-owl.vim'
+Plug 'joshdick/onedark.vim'
 
 " programming
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'sirver/UltiSnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'plasticboy/vim-markdown'
 
-" latex
+" writing
 
 Plug 'lervag/vimtex'
-
-" org
-
 Plug 'jceb/vim-orgmode'
+Plug 'plasticboy/vim-markdown'
 
 " git
 
@@ -74,10 +73,16 @@ set backspace=indent,eol,start
 set lazyredraw
 set hidden
 set pastetoggle=<F10>
-set wildmode=list:full
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.png,*.jpg,*.gif,*.o,.git
 set timeoutlen=500
 set updatetime=300
+set autochdir
+
+" completion
+
+set complete-=i
+set wildmode=list:full
+set wildignorecase
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.png,*.jpg,*.gif,*.o,.git,.svn,.hg
 
 " encoding
 
@@ -105,22 +110,18 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 let mapleader=","
 
-colo night-owl
+colo onedark
 
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-    augroup filetype_detect_on_rename
-        autocmd!
-        autocmd BufFilePost * filetype detect
-    augroup END
-endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup filetype_detect_on_rename
+    autocmd!
+    autocmd BufFilePost * filetype detect
+augroup END
 
 " vim-airline
 
@@ -129,14 +130,12 @@ let g:airline_theme = "bubblegum"
 
 " UltiSnips
 
-let g:UltiSnipsExpandTrigger="<C-k>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsExpandTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger = "<C-k>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
+let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsUsePythonVersion = 3
 
 " whick-key
 
@@ -148,8 +147,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-nnoremap <CR> :noh<CR><CR>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -173,9 +170,9 @@ let g:go_highlight_types = 1
 
 " better-whitespace
 
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 " vim-easymotion
 
@@ -194,16 +191,14 @@ nmap <leader>pc :PlugClean<cr>
 
 nmap <leader>gs :Magit<cr>
 
-nmap <leader>bb :Buffers<cr>
+nmap <leader>bb :Clap buffers<cr>
 nmap <leader>bk :bdelete<cr>
 
-nmap <leader>ff :Files<cr>
+nmap <leader>ff :Clap files<cr>
 nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
 
-nmap <leader>wh <C-w>h
-nmap <leader>wj <C-w>j
-nmap <leader>wk <C-w>k
-nmap <leader>wl <C-w>l
+nmap <leader>wv :vsplit<cr>
+nmap <leader>ws :split<cr>
 
 command W :w
 command Q :q
