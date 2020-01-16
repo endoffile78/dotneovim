@@ -42,7 +42,7 @@ Plug 'plasticboy/vim-markdown'
 " git
 
 Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 
 " fun
 
@@ -189,7 +189,9 @@ nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
 nmap <leader>pc :PlugClean<cr>
 
-nmap <leader>gs :Magit<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gb :Gblame<cr>
+nmap <leader>gd :Gdiff<cr>
 
 nmap <leader>bb :Clap buffers<cr>
 nmap <leader>bk :bdelete<cr>
