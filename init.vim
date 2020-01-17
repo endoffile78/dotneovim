@@ -76,6 +76,7 @@ set pastetoggle=<F10>
 set timeoutlen=500
 set updatetime=300
 set autochdir
+set eol
 
 " completion
 
