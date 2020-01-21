@@ -18,6 +18,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'ryvnf/readline.vim'
 Plug 'liuchengxu/vim-clap'
 Plug 'dstein64/vim-win'
+Plug 'luochen1990/rainbow'
 
 " theme
 
@@ -184,6 +185,13 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" rainbow
+
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+            \   'guifgs': ['lightblue', 'yellow', 'lightgreen', 'lightcyan',  'lightmagenta']
+            \ }
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
@@ -193,6 +201,7 @@ nmap <leader>pc :PlugClean<cr>
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gb :Gblame<cr>
 nmap <leader>gd :Gdiff<cr>
+nmap <leader>gl :Glog<cr>
 
 nmap <leader>bb :Clap buffers<cr>
 nmap <leader>bk :bdelete<cr>
