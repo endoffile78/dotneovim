@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/bundle')
 
 " general
 
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
@@ -19,6 +18,7 @@ Plug 'ryvnf/readline.vim'
 Plug 'liuchengxu/vim-clap'
 Plug 'dstein64/vim-win'
 Plug 'luochen1990/rainbow'
+Plug 'machakann/vim-sandwich'
 
 " theme
 
@@ -192,7 +192,11 @@ let g:rainbow_conf = {
             \   'guifgs': ['lightblue', 'yellow', 'lightgreen', 'lightcyan',  'lightmagenta']
             \ }
 
-" mappings
+" sandwhich
+
+runtime macros/sandwich/keymap/surround.vim
+
+"" mappings
 
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
