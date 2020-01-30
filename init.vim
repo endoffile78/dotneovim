@@ -15,24 +15,26 @@ Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-eunuch'
 Plug 'ryvnf/readline.vim'
-Plug 'liuchengxu/vim-clap'
 Plug 'dstein64/vim-win'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
+Plug 'conweller/findr.vim'
 
 " theme
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim'
+Plug 'hzchirs/vim-material'
 
 " programming
 
-" Plug 'sheerun/vim-polyglot'
 Plug 'sirver/UltiSnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'alvan/vim-closetag'
+Plug 'gregsexton/MatchTag'
+Plug 'elzr/vim-json', {'for': 'json'}
 
 " writing
 
@@ -44,6 +46,10 @@ Plug 'plasticboy/vim-markdown'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
+" tmux
+
+Plug 'christoomey/vim-tmux-navigator'
 
 " fun
 
@@ -112,12 +118,14 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
+
+colorscheme vim-material
 
 let mapleader=","
-
-colo onedark
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup filetype_detect_on_rename
@@ -184,6 +192,10 @@ let g:EasyMotion_smartcase = 1
 
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+map f <Plug>(easymotion-fl)
+map F <Plug>(easymotion-Fl)
+map t <Plug>(easymotion-tl)
+map T <Plug>(easymotion-Tl)
 
 " rainbow
 
@@ -196,7 +208,11 @@ let g:rainbow_conf = {
 
 runtime macros/sandwich/keymap/surround.vim
 
-"" mappings
+" vim-json
+
+let g:vim_json_syntax_conceal = 0
+
+" mappings
 
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
@@ -207,14 +223,17 @@ nmap <leader>gb :Gblame<cr>
 nmap <leader>gd :Gdiff<cr>
 nmap <leader>gl :Glog<cr>
 
-nmap <leader>bb :Clap buffers<cr>
+nmap <leader>bb :FindrBuffers<cr>
 nmap <leader>bk :bdelete<cr>
 
-nmap <leader>ff :Clap files<cr>
+nmap <leader>ff :Findr<cr>
 nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
 
 nmap <leader>wv :vsplit<cr>
 nmap <leader>ws :split<cr>
+
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 
 command W :w
 command Q :q
