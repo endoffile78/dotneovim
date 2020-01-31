@@ -153,6 +153,8 @@ nnoremap <silent> <leader> :WhichKey ','<CR>
 
 " coc.nvim
 
+let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json"]
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
