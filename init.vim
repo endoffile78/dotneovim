@@ -35,6 +35,7 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'lepture/vim-jinja'
 
 " writing
 
@@ -114,6 +115,8 @@ set ignorecase
 set hlsearch
 set showmatch
 
+" theme
+
 if (has("termguicolors"))
     set termguicolors
 endif
@@ -153,7 +156,7 @@ nnoremap <silent> <leader> :WhichKey ','<CR>
 
 " coc.nvim
 
-let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json"]
+let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json", "coc-tsserver"]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
