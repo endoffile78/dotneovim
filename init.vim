@@ -115,6 +115,11 @@ set ignorecase
 set hlsearch
 set showmatch
 
+if (executable("rg"))
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
+
 " theme
 
 if (has("termguicolors"))
@@ -236,6 +241,8 @@ nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
 
 nmap <leader>wv :vsplit<cr>
 nmap <leader>ws :split<cr>
+
+nmap <leader>/ :grep
 
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
