@@ -222,6 +222,8 @@ runtime macros/sandwich/keymap/surround.vim
 
 let g:vim_json_syntax_conceal = 0
 
+autocmd BufWinEnter,WinEnter term://* startinsert
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
@@ -247,6 +249,13 @@ nmap <leader>/ :grep
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-command W :w
-command Q :q
-command Wq :wq
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qa! qa!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qa qa
