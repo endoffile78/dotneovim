@@ -19,12 +19,15 @@ Plug 'dstein64/vim-win'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
 Plug 'conweller/findr.vim'
+Plug 'farmergreg/vim-lastplace'
+Plug 'svermeulen/vim-yoink'
 
 " theme
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'hzchirs/vim-material'
+Plug 'vim-scripts/Fruidle'
 
 " programming
 
@@ -85,6 +88,8 @@ set timeoutlen=500
 set updatetime=300
 set autochdir
 set eol
+set clipboard=unnamed
+set hidden
 
 " completion
 
@@ -131,7 +136,13 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 
-colorscheme vim-material
+let g:themes = ['vim-material', 'fruidle']
+fun! ToggleColorscheme()
+    let color = filter(copy(g:themes), {k,v-> v != g:colors_name})[0]
+    exe "colorscheme ".color
+endf
+
+exe "colorscheme ".g:themes[0]
 
 let mapleader=","
 
@@ -179,6 +190,7 @@ let g:echodoc_enable_at_startup = 1
 
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -187,6 +199,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+let g:go_def_mode="gopls"
+let g:go_info_mode="gopls"
+let g:go_def_mapping_enabled = 0
 
 " better-whitespace
 
@@ -224,6 +239,14 @@ let g:vim_json_syntax_conceal = 0
 
 autocmd BufWinEnter,WinEnter term://* startinsert
 
+" vim-yoink
+
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
@@ -239,7 +262,10 @@ nmap <leader>bb :FindrBuffers<cr>
 nmap <leader>bk :bdelete<cr>
 
 nmap <leader>ff :Findr<cr>
+nmap <leader>fr :browse oldfiles<cr>
 nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
+
+nnoremap <leader>tc :call ToggleColorscheme()<CR>
 
 nmap <leader>wv :vsplit<cr>
 nmap <leader>ws :split<cr>
