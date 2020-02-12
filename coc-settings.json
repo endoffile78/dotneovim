@@ -3,7 +3,7 @@
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+            "rootPatterns": [".ccls-root", "compile_commands.json", ".git/", ".hg/"],
             "initializationOptions": {
                 "cache": {
                     "directory": ".ccls-cache"
@@ -16,9 +16,6 @@
             "command": "gopls",
             "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
             "filetypes": ["go"],
-            "settings": {
-                "go.install.goplay": 0
-            }
         }
     },
     "languageserver": {

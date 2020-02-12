@@ -172,7 +172,7 @@ nnoremap <silent> <leader> :WhichKey ','<CR>
 
 " coc.nvim
 
-let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json", "coc-tsserver"]
+let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json", "coc-snippets", "coc-vimtex"]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -181,6 +181,9 @@ nmap <silent> gr <Plug>(coc-references)
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+au CursorHold * sil call CocActionAsync('highlight')
+au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 " echodoc
 
@@ -246,6 +249,16 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
+
+" vimtex
+
+let g:tex_flavor="latex"
+let g:vimtex_view_method="zathura"
+let g:vimtex_compiler_method="latexmk"
+
+if (has("nvim"))
+    let g:vimtex_compiler_progname="nvr"
+endif
 
 " mappings
 
