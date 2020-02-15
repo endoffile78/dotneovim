@@ -89,7 +89,8 @@ set updatetime=300
 set autochdir
 set eol
 set clipboard=unnamed
-set hidden
+set signcolumn=yes
+set fsync
 
 " completion
 
@@ -179,6 +180,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> K :call CocActionAsync('doHover')<cr>
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -259,6 +262,10 @@ let g:vimtex_compiler_method="latexmk"
 if (has("nvim"))
     let g:vimtex_compiler_progname="nvr"
 endif
+
+" findr
+
+let g:findr_floating_window = 0
 
 " mappings
 
