@@ -9,11 +9,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'liuchengxu/vim-which-key'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'godlygeek/tabular'
 Plug 'easymotion/vim-easymotion'
 Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
-Plug 'tpope/vim-eunuch'
 Plug 'ryvnf/readline.vim'
 Plug 'dstein64/vim-win'
 Plug 'luochen1990/rainbow'
@@ -21,6 +19,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'conweller/findr.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'svermeulen/vim-yoink'
+Plug 'jremmen/vim-ripgrep'
 
 " theme
 
@@ -44,6 +43,7 @@ Plug 'lepture/vim-jinja'
 
 Plug 'lervag/vimtex'
 Plug 'jceb/vim-orgmode'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " git
@@ -145,7 +145,8 @@ endf
 
 exe "colorscheme ".g:themes[0]
 
-let mapleader=","
+let mapleader="\<space>"
+let maplocalleader="\<space>\<space>"
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup filetype_detect_on_rename
@@ -169,7 +170,7 @@ let g:UltiSnipsUsePythonVersion = 3
 
 " whick-key
 
-nnoremap <silent> <leader> :WhichKey ','<CR>
+nnoremap <silent> <leader> :WhichKey ' '<CR>
 
 " coc.nvim
 
@@ -285,12 +286,12 @@ nmap <leader>ff :Findr<cr>
 nmap <leader>fr :browse oldfiles<cr>
 nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
 
-nnoremap <leader>tc :call ToggleColorscheme()<CR>
+nnoremap <silent> <leader>tc :call ToggleColorscheme()<CR>
 
-nmap <leader>wv :vsplit<cr>
-nmap <leader>ws :split<cr>
+nmap <silent> <leader>wv :vsplit<cr>
+nmap <silent> <leader>ws :split<cr>
 
-nmap <leader>/ :grep
+nmap <leader>/ :Rg
 
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
