@@ -13,7 +13,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
 Plug 'ryvnf/readline.vim'
-Plug 'dstein64/vim-win'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
 Plug 'conweller/findr.vim'
@@ -183,11 +182,15 @@ nmap <silent> gr <Plug>(coc-references)
 
 nmap <silent> K :call CocActionAsync('doHover')<cr>
 
+nmap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+
+command! -nargs=0 Format :call CocAction('format')
 
 " echodoc
 
@@ -244,8 +247,6 @@ runtime macros/sandwich/keymap/surround.vim
 
 let g:vim_json_syntax_conceal = 0
 
-autocmd BufWinEnter,WinEnter term://* startinsert
-
 " vim-yoink
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
@@ -288,13 +289,26 @@ nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
 
 nnoremap <silent> <leader>tc :call ToggleColorscheme()<CR>
 
+nmap <leader>wh <C-w>h
+nmap <leader>wj <C-w>j
+nmap <leader>wk <C-w>k
+nmap <leader>wl <C-w>l
 nmap <silent> <leader>wv :vsplit<cr>
 nmap <silent> <leader>ws :split<cr>
+nmap <leader>w0 <C-w>o
+nmap <leader>wo <C-w>w
+nmap <leader>w1 <C-w>q
+nmap <leader>wc <C-w>q
 
 nmap <leader>/ :Rg
 
+" Emacs keybindings
+
+nnoremap <C-g> <esc>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
+
+" Useful abbreviations
 
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
