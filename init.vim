@@ -19,6 +19,7 @@ Plug 'conweller/findr.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'svermeulen/vim-yoink'
 Plug 'jremmen/vim-ripgrep'
+Plug 'PeterRincker/vim-argumentative'
 
 " theme
 
@@ -37,6 +38,8 @@ Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'lepture/vim-jinja'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " writing
 
@@ -269,6 +272,10 @@ endif
 
 let g:findr_floating_window = 0
 
+" vim-jsx-pretty
+
+let g:vim_jsx_pretty_highlight_close_tag = 1
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
@@ -299,6 +306,7 @@ nmap <leader>w0 <C-w>o
 nmap <leader>wo <C-w>w
 nmap <leader>w1 <C-w>q
 nmap <leader>wc <C-w>q
+nmap <leader>wq <C-w>q
 
 nmap <leader>/ :Rg
 
