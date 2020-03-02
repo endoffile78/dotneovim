@@ -40,6 +40,7 @@ Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'axvr/zepl.vim'
 
 " writing
 
@@ -275,6 +276,17 @@ let g:findr_floating_window = 0
 " vim-jsx-pretty
 
 let g:vim_jsx_pretty_highlight_close_tag = 1
+
+" zpepl
+
+augroup zepl
+    autocmd!
+    autocmd FileType python     let b:repl_config = { 'cmd': 'python3' }
+    autocmd FileType javascript let b:repl_config = { 'cmd': 'node' }
+    autocmd FileType clojure    let b:repl_config = { 'cmd': 'clj' }
+augroup END
+
+nmap gz :Repl<cr>
 
 " mappings
 
