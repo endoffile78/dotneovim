@@ -25,7 +25,7 @@ Plug 'PeterRincker/vim-argumentative'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'hzchirs/vim-material'
+Plug 'endoffile78/vim-material'
 Plug 'vim-scripts/Fruidle'
 
 " programming
@@ -94,6 +94,7 @@ set eol
 set clipboard=unnamed
 set signcolumn=yes
 set fsync
+set listchars=eol:$,tab:»\ ,trail:~,nbsp:·
 
 " completion
 
@@ -286,7 +287,11 @@ augroup zepl
     autocmd FileType clojure    let b:repl_config = { 'cmd': 'clj' }
 augroup END
 
-nmap gz :Repl<cr>
+nmap <silent> gz :Repl<cr>
+
+" markdown
+
+let g:vim_markdown_folding_disabled = 1
 
 " mappings
 
@@ -340,3 +345,11 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
+
+" terminal
+
+autocmd TermOpen * if &buftype == 'terminal' | call TerminalCommands() | endif
+function TerminalCommands()
+    set nonumber
+    set signcolumn=no
+endfunction
