@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -41,6 +41,9 @@ Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'axvr/zepl.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'rhysd/vim-clang-format'
 
 " writing
 
@@ -53,10 +56,6 @@ Plug 'plasticboy/vim-markdown'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
-" tmux
-
-Plug 'christoomey/vim-tmux-navigator'
 
 " fun
 
@@ -95,11 +94,13 @@ set clipboard=unnamed
 set signcolumn=yes
 set fsync
 set listchars=eol:$,tab:»\ ,trail:~,nbsp:·
+set guifont=Iosevka:12
+set undofile
 
 " completion
 
 set complete-=i
-set wildmode=list:full
+set wildmode=list:longest,list:full
 set wildignorecase
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.png,*.jpg,*.gif,*.o,.git,.svn,.hg
 
@@ -178,7 +179,7 @@ nnoremap <silent> <leader> :WhichKey ' '<CR>
 
 " coc.nvim
 
-let g:coc_global_extensions = ["coc-go", "coc-python", "coc-ccls", "coc-json", "coc-snippets", "coc-vimtex"]
+let g:coc_global_extensions = ["coc-go", "coc-python", "coc-json", "coc-snippets", "coc-vimtex", "coc-clangd"]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -293,6 +294,22 @@ nmap <silent> gz :Repl<cr>
 
 let g:vim_markdown_folding_disabled = 1
 
+" rust.vim
+
+let g:rustfmt_autosave = 1
+
+" clang-format
+
+let clang_format#detect_style_file = 1
+autocmd FileType c ClangFormatAutoEnable
+
+" pear-tree
+
+let g:pear_tree_repeatable_expand = 0
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
@@ -349,6 +366,7 @@ cnoreabbrev Qa qa
 " terminal
 
 autocmd TermOpen * if &buftype == 'terminal' | call TerminalCommands() | endif
+autocmd TermOpen term://* startinsert
 function TerminalCommands()
     set nonumber
     set signcolumn=no
