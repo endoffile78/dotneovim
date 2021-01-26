@@ -9,7 +9,6 @@ Plug 'tmsvg/pear-tree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'easymotion/vim-easymotion'
 Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
 Plug 'ryvnf/readline.vim'
@@ -19,7 +18,7 @@ Plug 'conweller/findr.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'svermeulen/vim-yoink'
 Plug 'jremmen/vim-ripgrep'
-Plug 'PeterRincker/vim-argumentative'
+Plug 'justinmk/vim-sneak'
 
 " theme
 
@@ -225,19 +224,6 @@ let g:better_whitespace_enabled = 1
 let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 
-" vim-easymotion
-
-let g:EasyMotion_keys = "asdfghjkl"
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map f <Plug>(easymotion-fl)
-map F <Plug>(easymotion-Fl)
-map t <Plug>(easymotion-tl)
-map T <Plug>(easymotion-Tl)
-
 " rainbow
 
 let g:rainbow_active = 1
@@ -310,13 +296,20 @@ let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 
+" vim-sneak
+
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
 " mappings
 
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pu :PlugUpdate<cr>
 nmap <leader>pc :PlugClean<cr>
 
-nmap <leader>gs :Gstatus<cr>
+nmap <leader>gg :Gstatus<cr>
 nmap <leader>gb :Gblame<cr>
 nmap <leader>gd :Gdiff<cr>
 nmap <leader>gl :Glog<cr>
