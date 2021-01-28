@@ -74,6 +74,7 @@ set ruler
 set nocompatible
 set autoread
 set number
+set relativenumber
 set nowrap
 set cursorline
 set noerrorbells
