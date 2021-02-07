@@ -19,6 +19,7 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'svermeulen/vim-yoink'
 Plug 'jremmen/vim-ripgrep'
 Plug 'justinmk/vim-sneak'
+Plug 'vimlab/split-term.vim'
 
 " theme
 
@@ -96,6 +97,7 @@ set fsync
 set listchars=eol:$,tab:»\ ,trail:~,nbsp:·
 set guifont=Iosevka:12
 set undofile
+set textwidth=72
 
 " completion
 
@@ -337,6 +339,8 @@ nmap <leader>wc <C-w>q
 nmap <leader>wq <C-w>q
 
 nmap <leader>/ :Rg
+
+nmap <leader>ot :Term<cr>
 
 " Emacs keybindings
 
