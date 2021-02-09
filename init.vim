@@ -14,19 +14,20 @@ Plug 'romainl/vim-cool'
 Plug 'ryvnf/readline.vim'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
-Plug 'conweller/findr.vim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'svermeulen/vim-yoink'
 Plug 'jremmen/vim-ripgrep'
 Plug 'justinmk/vim-sneak'
 Plug 'vimlab/split-term.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-eunuch'
 
 " theme
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'endoffile78/vim-material'
-Plug 'vim-scripts/Fruidle'
 
 " programming
 
@@ -34,16 +35,14 @@ Plug 'sirver/UltiSnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'alvan/vim-closetag'
-Plug 'gregsexton/MatchTag'
 Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'axvr/zepl.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'rhysd/vim-clang-format'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-endwise'
 
 " writing
 
@@ -144,16 +143,10 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 
-let g:themes = ['vim-material', 'fruidle']
-fun! ToggleColorscheme()
-    let color = filter(copy(g:themes), {k,v-> v != g:colors_name})[0]
-    exe "colorscheme ".color
-endf
-
-exe "colorscheme ".g:themes[0]
+colorscheme vim-material
 
 let mapleader="\<space>"
-let maplocalleader="\<space>\<space>"
+let maplocalleader="\<space>m"
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup filetype_detect_on_rename
@@ -181,7 +174,8 @@ nnoremap <silent> <leader> :WhichKey ' '<CR>
 
 " coc.nvim
 
-let g:coc_global_extensions = ["coc-go", "coc-python", "coc-json", "coc-snippets", "coc-vimtex", "coc-clangd"]
+let g:coc_global_extensions = ["coc-go", "coc-python", "coc-json", "coc-snippets",
+                            \ "coc-vimtex", "coc-clangd", "coc-rls"]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -260,10 +254,6 @@ if (has("nvim"))
     let g:vimtex_compiler_progname="nvr"
 endif
 
-" findr
-
-let g:findr_floating_window = 0
-
 " vim-jsx-pretty
 
 let g:vim_jsx_pretty_highlight_close_tag = 1
@@ -308,23 +298,19 @@ map T <Plug>Sneak_T
 
 " mappings
 
-nmap <leader>pi :PlugInstall<cr>
-nmap <leader>pu :PlugUpdate<cr>
-nmap <leader>pc :PlugClean<cr>
+nmap <silent> <leader><space> :Commands<cr>
 
 nmap <leader>gg :Gstatus<cr>
 nmap <leader>gb :Gblame<cr>
 nmap <leader>gd :Gdiff<cr>
 nmap <leader>gl :Glog<cr>
 
-nmap <leader>bb :FindrBuffers<cr>
+nmap <leader>bb :Buffers<cr>
 nmap <leader>bk :bdelete<cr>
 
-nmap <leader>ff :Findr<cr>
-nmap <leader>fr :browse oldfiles<cr>
+nmap <leader>ff :Files<cr>
+nmap <leader>fr :History<cr>
 nmap <leader>fi :e ~/.config/nvim/init.vim<cr>
-
-nnoremap <silent> <leader>tc :call ToggleColorscheme()<CR>
 
 nmap <leader>wh <C-w>h
 nmap <leader>wj <C-w>j
@@ -340,9 +326,11 @@ nmap <leader>wq <C-w>q
 
 nmap <leader>/ :Rg
 
-nmap <leader>ot :Term<cr>
+nmap <silent> <leader>ot :Term<cr>
 
 " Emacs keybindings
+
+nmap <silent> <M-x> :Commands<cr>
 
 nnoremap <C-g> <esc>
 inoremap <C-a> <Home>
