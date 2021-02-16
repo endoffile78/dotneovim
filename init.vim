@@ -4,30 +4,27 @@ call plug#begin('~/.config/nvim/bundle')
 " general
 
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
 Plug 'tmsvg/pear-tree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
-Plug 'ryvnf/readline.vim'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
 Plug 'farmergreg/vim-lastplace'
-Plug 'svermeulen/vim-yoink'
 Plug 'jremmen/vim-ripgrep'
 Plug 'justinmk/vim-sneak'
 Plug 'vimlab/split-term.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-rsi'
 
 " theme
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'endoffile78/vim-material'
+Plug 'itchyny/lightline.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 " programming
 
@@ -38,16 +35,13 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'axvr/zepl.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'rhysd/vim-clang-format'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tpope/vim-endwise'
 
 " writing
 
 Plug 'lervag/vimtex'
-Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
@@ -143,7 +137,7 @@ if (has("nvim"))
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 
-colorscheme vim-material
+colorscheme PaperColor
 
 let mapleader="\<space>"
 let maplocalleader="\<space>m"
@@ -153,11 +147,6 @@ augroup filetype_detect_on_rename
     autocmd!
     autocmd BufFilePost * filetype detect
 augroup END
-
-" vim-airline
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = "bubblegum"
 
 " UltiSnips
 
@@ -236,14 +225,6 @@ runtime macros/sandwich/keymap/surround.vim
 
 let g:vim_json_syntax_conceal = 0
 
-" vim-yoink
-
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
 " vimtex
 
 let g:tex_flavor="latex"
@@ -258,17 +239,6 @@ endif
 
 let g:vim_jsx_pretty_highlight_close_tag = 1
 
-" zpepl
-
-augroup zepl
-    autocmd!
-    autocmd FileType python     let b:repl_config = { 'cmd': 'python3' }
-    autocmd FileType javascript let b:repl_config = { 'cmd': 'node' }
-    autocmd FileType clojure    let b:repl_config = { 'cmd': 'clj' }
-augroup END
-
-nmap <silent> gz :Repl<cr>
-
 " markdown
 
 let g:vim_markdown_folding_disabled = 1
@@ -281,6 +251,7 @@ let g:rustfmt_autosave = 1
 
 let clang_format#detect_style_file = 1
 autocmd FileType c ClangFormatAutoEnable
+autocmd FileType cpp ClangFormatAutoEnable
 
 " pear-tree
 
@@ -295,6 +266,10 @@ map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
+
+" airline
+
+let g:lightline = { 'colorscheme': 'PaperColor' }
 
 " mappings
 
@@ -331,10 +306,6 @@ nmap <silent> <leader>ot :Term<cr>
 " Emacs keybindings
 
 nmap <silent> <M-x> :Commands<cr>
-
-nnoremap <C-g> <esc>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
 
 " Useful abbreviations
 
