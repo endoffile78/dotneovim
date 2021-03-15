@@ -87,7 +87,9 @@ set eol
 set clipboard=unnamed
 set signcolumn=yes
 set fsync
-set listchars=eol:$,tab:»\ ,trail:~,nbsp:·
+set listchars=tab:»\ ,trail:.,extends:>,precedes:<,nbsp:·
+set list
+
 set guifont=Iosevka:12
 set undofile
 set textwidth=72
