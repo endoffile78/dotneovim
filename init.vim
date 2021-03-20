@@ -90,6 +90,8 @@ set fsync
 set listchars=tab:»\ ,trail:.,extends:>,precedes:<,nbsp:·
 set list
 
+set formatoptions-=t
+
 set guifont=Iosevka:12
 set undofile
 set textwidth=72
